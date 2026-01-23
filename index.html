@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Learn Coding</title>
+  <style>
+    body {
+      background: #0a0a0a;
+      color: #00ffcc;
+      font-family: monospace;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 40px;
+    }
+
+    #headingt {
+      background-color: #000;
+      border: 2px solid #00ffcc;
+      border-radius: 20px;
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+
+    button {
+      background: #000;
+      color: #00ffcc;
+      border: 2px solid #00ffcc;
+      padding: 10px 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-family: monospace;
+      margin: 6px;
+    }
+
+    button:hover {
+      background: #00ffcc;
+      color: #000;
+    }
+
+    .controls {
+      margin-top: 15px;
+    }
+
+    input[type="range"] {
+      width: 300px;
+    }
+
+    .video-container {
+      width: 70%;
+      max-width: 1000px;
+      aspect-ratio: 16 / 9;
+      margin-top: 20px;
+      display: none;
+      position: relative;
+    }
+
+    .video-container iframe {
+      width: 100%;
+      height: 100%;
+      border-radius: 12px;
+      border: none;
+    }
+
+    /* ===== NOTES SECTION ===== */
+    .notes-section {
+      width: 70%;
+      max-width: 1000px;
+      margin-top: 20px;
+      background: #00ffcc22;
+      border: 2px solid #00ffcc;
+      border-radius: 16px;
+      padding: 15px;
+    }
+
+    .notes-section h2 {
+      margin-top: 0;
+      margin-bottom: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .comment-box {
+      width: 100%;
+      height: 140px;
+      background: #000;
+      color: #000; /* default text color */
+      text-shadow: 0 0 6px #00ffcc33; /* subtle glow */
+      border: 1px solid #00ffcc;
+      border-radius: 10px;
+      padding: 10px;
+      font-family: monospace;
+      font-size: 14px;
+      resize: vertical;
+      outline: none;
+      overflow-y: auto;
+    }
+
+    .comment-box:focus {
+      box-shadow: 0 0 10px #00ffcc44;
+    }
+
+    .timestamp {
+      cursor: pointer;
+      color: #00ffcc;
+      text-decoration: underline;
+    }
+    .timestamp:hover {
+      text-shadow: 0 0 5px #00ffcc;
+    }
+  </style>
+</head>
+<body>
+
+<h1 id="headingt">This is a site to learn coding</h1>
+
+<!-- VIDEO BUTTONS -->
+<div>
+  <button onclick="showVideo('android')">Android</button>
+  <button onclick="showVideo('csharp')">C#</button>
+  <button onclick="showVideo('js')">JavaScript</button>
+  <button onclick="showVideo('html')">HTML</button>
+  <button onclick="showVideo('python')">Python</button>
+  <button onclick="showVideo('blender')">Blender</button>
+</div>
+
+<!-- RESIZE SLIDER -->
+<div class="controls">
+  Video size:
+  <input type="range" min="30" max="100" value="70" oninput="resizeVideo(this.value)">
+  <span id="sizeValue">70%</span>
+</div>
+
+<!-- VIDEOS -->
+<div class="video-container" id="android">
+  <iframe id="player_android" src="https://www.youtube.com/embed/mXjZQX3UzOs?enablejsapi=1" allowfullscreen></iframe>
+</div>
+<div class="video-container" id="csharp">
+  <iframe width="560" height="315" src="https://www.youtube.com/embed/3ClV0oK5wG8?si=9X7qykhIPfXt3OcK" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+</div>
+<div class="video-container" id="js">
+  <iframe id="player_js" src="https://www.youtube.com/embed/lfmg-EJ8gm4?enablejsapi=1" allowfullscreen></iframe>
+</div>
+<div class="video-container" id="html">
+  <iframe id="player_html" src="https://www.youtube.com/embed/HGTJBPNC-Gw?enablejsapi=1" allowfullscreen></iframe>
+</div>
+<div class="video-container" id="python">
+  <iframe id="player_python" src="https://www.youtube.com/embed/UrsmFxEIp5k?enablejsapi=1" allowfullscreen></iframe>
+</div>
+<div class="video-container" id="blender">
+  <iframe id="player_blender" src="https://www.youtube.com/embed/HJ8bcaYtVxE?enablejsapi=1" allowfullscreen></iframe>
+</div>
+
+<!-- NOTES FOR EACH VIDEO -->
+<div class="notes-section" id="notes_android">
+  <h2>Notes (Android) <input type="color" id="color_android" title="Pick text color"></h2>
+  <textarea class="comment-box" id="comment_android" placeholder="Write notes here..."></textarea>
+  <div class="parsed-note" id="parsed_android"></div>
+</div>
+
+<div class="notes-section" id="notes_csharp">
+  <h2>Notes (C#) <input type="color" id="color_csharp" title="Pick text color"></h2>
+  <textarea class="comment-box" id="comment_csharp" placeholder="Write notes here..."></textarea>
+  <div class="parsed-note" id="parsed_csharp"></div>
+</div>
+
+<div class="notes-section" id="notes_js">
+  <h2>Notes (JavaScript) <input type="color" id="color_js" title="Pick text color"></h2>
+  <textarea class="comment-box" id="comment_js" placeholder="Write notes here..."></textarea>
+  <div class="parsed-note" id="parsed_js"></div>
+</div>
+
+<div class="notes-section" id="notes_html">
+  <h2>Notes (HTML) <input type="color" id="color_html" title="Pick text color"></h2>
+  <textarea class="comment-box" id="comment_html" placeholder="Write notes here..."></textarea>
+  <div class="parsed-note" id="parsed_html"></div>
+</div>
+
+<div class="notes-section" id="notes_python">
+  <h2>Notes (Python) <input type="color" id="color_python" title="Pick text color"></h2>
+  <textarea class="comment-box" id="comment_python" placeholder="Write notes here..."></textarea>
+  <div class="parsed-note" id="parsed_python"></div>
+</div>
+
+<div class="notes-section" id="notes_blender">
+  <h2>Notes (Blender) <input type="color" id="color_blender" title="Pick text color"></h2>
+  <textarea class="comment-box" id="comment_blender" placeholder="Write notes here..."></textarea>
+  <div class="parsed-note" id="parsed_blender"></div>
+</div>
+
+<script>
+const videos = document.querySelectorAll(".video-container");
+const notesSections = document.querySelectorAll(".notes-section");
+const sizeLabel = document.getElementById("sizeValue");
+const videoIDs = ['android','csharp','js','html','python','blender'];
+const players = {};
+const STORAGE_PREFIX = "notes_";
+const COLOR_PREFIX = "color_";
+
+// Show video + notes
+function showVideo(id) {
+  videos.forEach(v => v.style.display = "none");
+  notesSections.forEach(n => n.style.display = "none");
+
+  document.getElementById(id).style.display = "block";
+  document.getElementById('notes_' + id).style.display = "block";
+}
+
+// Resize videos
+function resizeVideo(value) {
+  videos.forEach(v => v.style.width = value + "%");
+  sizeLabel.textContent = value + "%";
+}
+
+// Load YouTube API
+const tag = document.createElement('script');
+tag.src = "https://www.youtube.com/iframe_api";
+document.body.appendChild(tag);
+
+function onYouTubeIframeAPIReady() {
+  videoIDs.forEach(id => {
+    const iframeId = 'player_' + id;
+    players[iframeId] = new YT.Player(iframeId);
+  });
+}
+
+// Convert timestamp to seconds (supports H:MM:SS and MM:SS)
+function timeToSeconds(t) {
+    const parts = t.split(':').map(Number);
+    if (parts.length === 3) return parts[0]*3600 + parts[1]*60 + parts[2];
+    if (parts.length === 2) return parts[0]*60 + parts[1];
+    return 0;
+}
+
+// Parse text for timestamps (H:MM:SS or MM:SS)
+function parseText(text, container, iframeId){
+  const html = text.replace(/(\b\d{1,2}:\d{2}(?::\d{2})?\b)/g, match => {
+    return `<span class="timestamp" data-time="${match}" data-player="${iframeId}">${match}</span>`;
+  });
+  container.innerHTML = html;
+}
+
+// Initialize notes for each video
+videoIDs.forEach(id => {
+  const textarea = document.getElementById('comment_' + id);
+  const parsed = document.getElementById('parsed_' + id);
+  const colorInput = document.getElementById('color_' + id);
+
+  // Load saved notes
+  textarea.value = localStorage.getItem(STORAGE_PREFIX + id) || "";
+  parseText(textarea.value, parsed, 'player_' + id);
+
+  textarea.addEventListener('input', () => {
+    localStorage.setItem(STORAGE_PREFIX + id, textarea.value);
+    parseText(textarea.value, parsed, 'player_' + id);
+  });
+
+  // Load saved color
+  const savedColor = localStorage.getItem(COLOR_PREFIX + id);
+  if(savedColor){
+    textarea.style.color = savedColor;
+    colorInput.value = savedColor;
+  }
+
+  colorInput.addEventListener('input', () => {
+    textarea.style.color = colorInput.value;
+    localStorage.setItem(COLOR_PREFIX + id, colorInput.value);
+  });
+
+  // Clickable timestamps
+  parsed.addEventListener('click', e => {
+    if(e.target.classList.contains('timestamp')){
+      const seconds = timeToSeconds(e.target.dataset.time);
+      const videoID = e.target.dataset.player;
+      if(players[videoID]){
+        players[videoID].seekTo(seconds, true);
+        players[videoID].playVideo();
+      }
+    }
+  });
+});
+
+// Show first video on load
+showVideo('android');
+</script>
+
+</body>
+</html>
