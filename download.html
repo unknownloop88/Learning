@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Developer Tools Hub</title>
+
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+    min-height: 100vh;
+    padding: 40px 15px;
+    display: flex;
+    justify-content: center;
+}
+
+.container {
+    width: 100%;
+    max-width: 900px;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 2.2rem;
+    letter-spacing: 1px;
+}
+
+.editor {
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(12px);
+    border-radius: 16px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.editor:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+}
+
+.editor-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.editor-title {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.editor-title img {
+    width: 45px;
+    height: 45px;
+}
+
+.editor h3 {
+    font-size: 1.3rem;
+}
+
+.arrow {
+    font-size: 1.2rem;
+    transition: transform 0.3s;
+}
+
+.details {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease;
+    margin-top: 15px;
+    line-height: 1.8;
+    font-size: 0.95rem;
+
+    /* New styling */
+    background: linear-gradient(135deg, rgba(255,255,255,0.08), rgba(255,255,255,0.03));
+    color: #e6f7ff;   /* Soft light blue-white text */
+    padding: 0 18px;
+    border-radius: 12px;
+    border: 1px solid rgba(255,255,255,0.1);
+    box-shadow: inset 0 0 15px rgba(0,0,0,0.3);
+}
+
+
+.editor.active .details {
+    max-height: 600px;
+    padding: 18px;
+}
+
+
+
+.editor.active .arrow {
+    transform: rotate(180deg);
+}
+
+.download-btn {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 10px 18px;
+    border-radius: 8px;
+    background: linear-gradient(90deg, #00f2fe, #4facfe);
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.download-btn:hover {
+    transform: scale(1.05);
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    h1 {
+        font-size: 1.6rem;
+    }
+
+    .editor {
+        padding: 15px;
+    }
+
+    .editor-title img {
+        width: 35px;
+        height: 35px;
+    }
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+<h1>Developer Tools & Programming Downloads</h1>
+
+<!-- VS Code -->
+<div class="editor" onclick="toggle(this)">
+    <div class="editor-header">
+        <div class="editor-title">
+            <img src="https://imgs.search.brave.com/UDopusxcFTZ5C131jd3sc9r8fkCuS2z3_jnHojJyP7U/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9zdGF0/aWMuY2RubG9nby5j/b20vbG9nb3Mvdi84/My92cy1jb2RlLnN2/Zw">
+            <h3>VS Code</h3>
+        </div>
+        <div class="arrow">▼</div>
+    </div>
+    <div class="details">
+        Visual Studio Code is a lightweight yet extremely powerful source code editor.
+        It supports IntelliSense smart completion, built-in Git integration, debugging tools,
+        terminal access, and a massive extension marketplace.
+        <br><br>
+        It is widely used for web development (HTML, CSS, JavaScript),
+        backend programming (Node.js, Python, PHP), and even mobile and cloud development.
+        Its flexibility and performance make it ideal for both beginners and professionals.
+        <br>
+        <a class="download-btn" href="https://code.visualstudio.com/download" target="_blank">Download Now</a>
+    </div>
+</div>
+
+<!-- Visual Studio -->
+<div class="editor" onclick="toggle(this)">
+    <div class="editor-header">
+        <div class="editor-title">
+            <img src="https://visualstudio.microsoft.com/wp-content/uploads/2025/11/visual-studio-26-icon.webp">
+            <h3>Visual Studio</h3>
+        </div>
+        <div class="arrow">▼</div>
+    </div>
+    <div class="details">
+        Visual Studio is a full-featured Integrated Development Environment (IDE).
+        It is powerful for building Windows applications, C#, .NET projects,
+        enterprise systems, and even game development using Unity.
+        <br><br>
+        It includes advanced debugging tools, performance profiling,
+        graphical designers, and team collaboration features.
+        Best suited for large-scale and professional software development.
+        <br>
+        <a class="download-btn" href="https://visualstudio.microsoft.com/downloads/" target="_blank">Download Now</a>
+    </div>
+</div>
+
+<!-- PyCharm -->
+<div class="editor" onclick="toggle(this)">
+    <div class="editor-header">
+        <div class="editor-title">
+            <img src="https://resources.jetbrains.com/storage/products/pycharm/img/meta/pycharm_logo_300x300.png">
+            <h3>PyCharm</h3>
+        </div>
+        <div class="arrow">▼</div>
+    </div>
+    <div class="details">
+        PyCharm is a professional Python IDE created for serious development.
+        It offers intelligent code completion, error detection,
+        integrated testing tools, and advanced debugging support.
+        <br><br>
+        It is perfect for web development (Django, Flask),
+        data science, AI projects, and automation scripting.
+        It also provides project management tools and database support.
+        <br>
+        <a class="download-btn" href="https://www.jetbrains.com/pycharm/download/" target="_blank">Download Now</a>
+    </div>
+</div>
+
+
+<!-- Dev C++ -->
+<div class="editor" onclick="toggle(this)">
+    <div class="editor-header">
+        <div class="editor-title">
+            <img src="https://www.dev-cpp.com/images/devcpp5icon.png" alt="Dev C++ Logo">
+            <h3>Dev C++</h3>
+        </div>
+        <div class="arrow">▼</div>
+    </div>
+    <div class="details">
+        Dev C++ is a lightweight and beginner-friendly IDE for C and C++ programming.
+        <br><br>
+        It provides a simple interface for writing, compiling, and debugging programs.
+        Perfect for students learning C/C++ or developers who want a minimal IDE without heavy overhead.
+        <br>
+        It supports basic project management, syntax highlighting, and quick builds.
+        <br><br>
+        <a class="download-btn" href="https://www.dev-cpp.com/Dev-Cpp-5/" target="_blank">Download Dev C++</a>
+    </div>
+</div>
+
+
+
+<!-- Python -->
+<div class="editor" onclick="toggle(this)">
+    <div class="editor-header">
+        <div class="editor-title">
+            <img src="https://imgs.search.brave.com/LvqLmhW6-Mtrsnl0pBfdjJYd4fVq_CMp0ylD8dazPYg/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9paDEu/cmVkYnViYmxlLm5l/dC9pbWFnZS41MjQz/NTEzMDY5Ljg4ODMv/ZnBvc3RlcixzbWFs/bCx3YWxsX3RleHR1/cmUsc3F1YXJlX3By/b2R1Y3QsNjAweDYw/MC51Mi5qcGc">
+            <h3>Python</h3>
+        </div>
+        <div class="arrow">▼</div>
+    </div>
+    <div class="details">
+        Python is one of the most popular programming languages in the world.
+        It is simple, readable, and extremely versatile.
+        <br><br>
+        Python is used for web development, artificial intelligence,
+        machine learning, automation, cybersecurity, and data analysis.
+        It has a huge ecosystem of libraries such as NumPy, Pandas,
+        TensorFlow, and many more.
+        <br>
+        <a class="download-btn" href="https://www.python.org/downloads/" target="_blank">Download Now</a>
+    </div>
+</div>
+
+<!-- Java -->
+<div class="editor" onclick="toggle(this)">
+    <div class="editor-header">
+        <div class="editor-title">
+            <img src="https://imgs.search.brave.com/naMoqNpj2MTBE3plR0FKdNJC8_L-wdjGQFlEn8uCIP0/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9sb2dv/bG9vay5uZXQvd3At/Y29udGVudC91cGxv/YWRzLzIwMjIvMTEv/SmF2YS1Mb2dvLTE5/OTYtNTAweDI4MS5w/bmc" alt="">
+            <h3>Java</h3>
+        </div>
+        <div class="arrow">▼</div>
+    </div>
+    <div class="details">
+        Java is a powerful object-oriented programming language.
+        It is widely used in enterprise applications, Android development,
+        banking systems, and backend services.
+        <br><br>
+        Java follows the “Write Once, Run Anywhere” principle,
+        meaning applications can run on different platforms using the JVM.
+        It is stable, secure, and used by large global companies.
+        <br>
+        <a class="download-btn" href="https://www.java.com/en/download/manual.jsp" target="_blank">Download Now</a>
+    </div>
+</div>
+
+
+
+
+
+</div>
+
+<script>
+function toggle(selected) {
+    document.querySelectorAll('.editor').forEach(editor => {
+        if (editor !== selected) {
+            editor.classList.remove('active');
+        }
+    });
+    selected.classList.toggle('active');
+}
+</script>
+
+</body>
+</html>

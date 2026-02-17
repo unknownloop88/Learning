@@ -6,6 +6,42 @@
 <title>Learn Coding</title>
 
 <style>
+
+.brand-tag {
+    position: relative; /* instead of fixed */
+    display: inline-block; /* keeps its size clean */
+    margin: 20px 0; /* spacing from top */
+    
+    padding: 12px 22px;
+    border-radius: 25px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    font-size: 0.9rem;
+
+    color: #fff;
+    text-align: center;
+
+    /* Soft gradient background animation */
+    background: linear-gradient(270deg, #667eea, #764ba2, #43cea2, #185a9d, #ff512f, #dd2476, #11998e, #38ef7d);
+    background-size: 1600% 1600%;
+    animation: gradientShift 15s ease infinite;
+
+    backdrop-filter: blur(8px);
+    box-shadow: 0 0 20px rgba(0,0,0,0.4);
+}
+
+
+/* Animate background position for smooth color blending */
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    25% { background-position: 50% 50%; }
+    50% { background-position: 100% 50%; }
+    75% { background-position: 50% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+
+
 body {
   background: #0a0a0a;
   color: #00ffcc;
@@ -112,6 +148,8 @@ input[type="range"] {
 <button onclick="showVideo('html')">HTML</button>
 <button onclick="showVideo('python')">Python</button>
 <button onclick="showVideo('blender')">Blender</button>
+<button onclick="download()" >Download</button>
+
 </div>
 
 <div class="controls">
@@ -148,6 +186,12 @@ Video size:
 <div class="video-container" id="blender">
 <iframe id="player_blender" src="https://www.youtube.com/embed/HJ8bcaYtVxE?enablejsapi=1" allowfullscreen></iframe>
 </div>
+
+<h4 class="brand-tag">
+    A product from LoopPI A.K.A Arjun Gahatraj
+</h4>
+
+
 
 <!-- NOTES -->
 <script>
@@ -239,7 +283,17 @@ function onYouTubeIframeAPIReady(){
 }
 
 showVideo("android");
+function download() {
+  window.open("download.html");
+}
 </script>
 
+
+
 </body>
+
+<footer>
+    &copy; 2026 all right received by LoopPI(Arjun)
+</footer>
+
 </html>
